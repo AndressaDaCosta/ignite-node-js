@@ -1,8 +1,18 @@
-
 import http from 'node:http';
 
-const server = http.createServer((request, response) => {
-	return response.end('Hello Ignite');
+const server = http.createServer((req, res) => {
+	const { method, url } = req;
+	// console.log(method, url);
+
+	if (method === 'GET' && url === '/users') {
+		return res.end('Listagem de usuários');
+	}
+
+	if (method === 'POST' && url === '/users') {
+		return res.end('Criação de usuário');
+	}
+
+	return res.end('Hello Ignite');
 });
 
 server.listen(3333);
